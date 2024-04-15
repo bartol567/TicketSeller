@@ -3,9 +3,9 @@ using TicketSellerAPI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Dodaje servise u container
 builder.Services.AddControllers();
-// Add Swagger generation with the necessary configurations.
+// Swagger generiranje sa potrebnom konfiguracijom
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -24,24 +24,24 @@ builder.Services.AddDbContext<TicketSellerContext>(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// HTTP request
 if (app.Environment.IsDevelopment())
 {
-    // Enable middleware to serve generated Swagger as a JSON endpoint.
+    // Swagger kao Json endpoint
     app.UseSwagger();
-    // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
+    // Specificira Swagger Json endpoint
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ticket Seller API V1");
-        c.RoutePrefix = string.Empty;  // Serve the Swagger UI at the app's root (e.g., http://localhost:5000/)
+        c.RoutePrefix = string.Empty;  
     });
 }
 app.UseCors("AllowAll");
-// Middleware to redirect HTTP requests to HTTPS.
+// Http u Https
 app.UseHttpsRedirection();
-// Middleware to enable authorization.
+// Omoguciti autorizaciju
 app.UseAuthorization();
-// Maps controllers to their respective routes.
+// Controleri na njihove rute
 app.MapControllers();
-// Runs the application.
+// Pokretanje app-a
 app.Run();
