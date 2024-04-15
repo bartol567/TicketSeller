@@ -12,12 +12,12 @@ namespace TicketSellerAPI.Models
         [Required(ErrorMessage = "Occasion ID is required.")]
         public int OccasionId { get; set; }
 
-        // If you have specific requirements for seats, validate them. Otherwise, basic validation is sufficient.
+        //Ako imam posebne zahtjeve promijeni, inace dovoljan validator
         [Required(ErrorMessage = "Seat number is required.")]
         [Range(1, int.MaxValue, ErrorMessage = "Seat number must be greater than 0.")]
         public int Seat { get; set; }
 
-        // Seated can be true or false; no additional validation is required unless specific logic is applied.
+        // Seated je da ili ne, dovoljno
 
         public User? User { get; set; }
         public Occasion? Occasion { get; set; }
